@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        bundle:path.resolve(__dirname, 'client/index.js')
+        bundle: path.resolve(__dirname, 'client/index.js')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -54,7 +54,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Webpack App',
+            title: 'One Step',
             filename: 'index.html',
             template: 'client/template.html'
         })

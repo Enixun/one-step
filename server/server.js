@@ -7,32 +7,25 @@ const apiRouter = require('./routes/api');
 
 const PORT = 3000;
 
-/**
- * handle parsing request body
- */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /**
  * handle requests for static files
  */
-app.use(express.static(path.resolve(__dirname, '../client/assets')));
+app.use(express.static(path.resolve(__dirname, '../dist')));
 
 /**
  * define route handlers
  */
 app.use('/api', apiRouter);
 app.get('/', (req, res) => {
-  res.status(200).json({key: 'value'});
+  res.status(200).sendFile(path.resolve(__dirname, '../dist/index.html'));
 })
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.status(404).send('Error: Not Found'));
 
-/**
- * express error handler
- * @see https://expressjs.com/en/guide/error-handling.html#writing-error-handlers
- */
 
 app.use((err, req, res, next) => {
   const defaultErr = {

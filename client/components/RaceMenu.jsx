@@ -1,7 +1,6 @@
-// import { RestartProcess } from "concurrently";
 import React, { useEffect, useState } from "react";
 
-function Test ()  {
+const RaceMenu = () =>  {
   const [backendData, setBackendData] = useState([]);
 
   useEffect(() => {
@@ -11,20 +10,16 @@ function Test ()  {
         // const raceNames = races.map((race, i) => <li>{race.name}</li>)
         setBackendData(races);
       })
+      .catch();
     }, []); //limits call
     
-  // console.log(backendData)
-  const raceNames = backendData.map((raceObj, i) => <li key={i}>{raceObj.name}</li>);
-  console.log(raceNames)
+  const raceNames = backendData.map((raceObj, i) => <button onClick={(e) => {console.log(e.target.innerText)}} key={i}>{raceObj.name}</button>);
 
   return (
     <div>
-      {/* <p>Something</p> */}
-      <ul>
-        {raceNames}
-      </ul>
+      {raceNames}
     </div>
   );
 };
 
-export default Test;
+export default RaceMenu;

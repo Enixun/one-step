@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import Test from "./TestComponent.jsx";
+import React, { Component, useState, useEffect } from "react";
+import RaceMenu from "./RaceMenu.jsx";
+import NameMenu from "./NameMenu.jsx";
 
 // class App extends Component {
 //   render() {
@@ -11,14 +12,29 @@ import Test from "./TestComponent.jsx";
 //   }
 // }
 
+const saveCharacter = ({name}) => {
+  console.log('Name but in saveCharacter', name);
+}
+
 const App = () => {
+  const [characterState, setCharacterState] = useState({name: 'John Doe', age: 29});
+
+
+
+  console.log('characterName in App', characterState)
+
   return (
     <>
       <div className="container">
-        <h1>Hello World</h1>
+        <h1>One Step</h1>
       </div>
       <div className="container">
-        <Test />
+        <p>Your Character: {characterState.name}</p>
+        <NameMenu state={characterState} onChange={setCharacterState} />
+        <RaceMenu />
+      </div>
+      <div className="container">
+        <button id="save" onClick={(e) => saveCharacter()}>Save</button>
       </div>
     </>
   );
