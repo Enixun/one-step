@@ -3,7 +3,7 @@ const express = require('express');
 
 const app = express();
 
-const apiRouter = require('./routes/api');
+const dbRouter = require('./routes/db');
 
 const PORT = 3000;
 
@@ -18,7 +18,7 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 /**
  * define route handlers
  */
-app.use('/api', apiRouter);
+app.use('/db', dbRouter);
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../dist/index.html'));
 })

@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from "react";
 
-const RaceMenu = () =>  {
-  const [backendData, setBackendData] = useState([]);
+
+
+const RaceMenu = ({ characterRace, updateCharacterRace }) =>  {
+  const [backendData, setBackendData] = useState({races: [], activeRace: {}});
 
   useEffect(() => {
-    fetch('/api/races')
+    fetch('/db/races')
       .then(response => response.json())
       .then(races => {
-        // const raceNames = races.map((race, i) => <li>{race.name}</li>)
-        setBackendData(races);
+        const activeRace = races.find((race) => race.name === characterRace)
+        setBackendData({...backendData, races, activeRace});
       })
-      .catch();
+      .catch(err => console.log(err));
     }, []); //limits call
-    
-  const raceNames = backendData.map((raceObj, i) => <button onClick={(e) => {console.log(e.target.innerText)}} key={i}>{raceObj.name}</button>);
+
 
   return (
     <div>
-      {raceNames}
+      {backendData.races.map((raceObj, i) => {
+        return <button 
+                className="btn" 
+                onClick={(e) => {
+                  setBackendData({...backendData, activeRace: raceObj});
+                  updateCharacterRace(e.target.value);
+                }} 
+                value={raceObj.name}
+                key={i}>{raceObj.name}</button>
+      })}
+      <p className="description">{backendData.activeRace.description}</p>
     </div>
   );
 };

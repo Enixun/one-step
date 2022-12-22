@@ -22,7 +22,7 @@ module.exports = {
         compress: true,
         historyApiFallback: true,
         proxy: {
-            '/api': 'http://localhost:3000'
+            '/db': 'http://localhost:3000'
         }
     },
     module: {
