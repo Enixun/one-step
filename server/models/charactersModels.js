@@ -18,10 +18,59 @@ const racesSchema = new Schema({
   name: {
     type: String,
     required: true
+  },
+  description: {
+    type: String
   }
 });
-
 const Race = mongoose.model('race', racesSchema);
+
+const classesSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String
+  }
+});
+const Class = mongoose.model('class', classesSchema);
+
+const playersSchema = new Schema({
+  name: {
+    type: String
+  }, 
+  age: {
+    type: Number
+  },
+  class: {
+    type: String
+  },
+  race: {
+    type: String
+  },
+  abilityScores: {
+    Strength: {
+      type: Number
+    },
+    Dexterity: {
+      type: Number
+    },
+    Constitution: {
+      type: Number
+    },
+    Intelligence: {
+      type: Number
+    },
+    Wisdom: {
+      type: Number
+    },
+    Charisma: {
+      type: Number
+    },
+  }
+});
+const Player = mongoose.model('player', playersSchema);
 
 // TODO: create a schema for 'person' and use it to create the model for it below
 // const personSchema = new Schema({
@@ -58,5 +107,7 @@ const Race = mongoose.model('race', racesSchema);
 
 // exports all the models in an object to be used in the controller
 module.exports = {
+  Class,
+  Player,
   Race
 };

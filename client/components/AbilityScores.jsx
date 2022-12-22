@@ -8,7 +8,7 @@ const AbilityScores = ({ rollsState, updateRollsState, state, updateAbilityScore
                 <th>Rolls</th>
                 <th>Ability Scores</th>
                 <th>Modifier</th>
-                <th>Attribute</th>
+                <th>Ability Type</th>
             </tr></thead>
             <tbody>
                 {rollsState.rolls.map((rolls, i) => {
@@ -22,17 +22,14 @@ const AbilityScores = ({ rollsState, updateRollsState, state, updateAbilityScore
                                 <select 
                                     onChange={(e) => {
                                         const updateArr = JSON.parse(e.target.value);
-                                        // console.log(e.target.parentElement.removeChild(e.target));
-                                        // e.target.querySelector(updateArr[2]).innerText = updateArr[0];
-                                        const newLabel = document.createElement('p');
-                                        const attributeLabel = document.createTextNode(updateArr[0]);
-                                        newLabel.appendChild(attributeLabel);
+                                        // [0] is ability, [1] is roll value
+                                        const newLabel = document.createElement('span').appendChild(document.createTextNode(updateArr[0]));
                                         e.target.parentElement.appendChild(newLabel);
                                         e.target.parentElement.removeChild(e.target)
                                         updateRollsState({
                                             ...rollsState, 
-                                            attributes: {
-                                                ...rollsState.attributes, 
+                                            abilityTypes: {
+                                                ...rollsState.abilityTypes, 
                                                 [updateArr[0]]: true
                                             }});
                                         updateAbilityScores({
@@ -46,13 +43,13 @@ const AbilityScores = ({ rollsState, updateRollsState, state, updateAbilityScore
                                     key={`s${i}`} 
                                     id={`select${i}`}>
                                     <option id='opt0' key='o0' value={[null]}>-</option>
-                                    {Object.keys(rollsState.attributes).map((attribute, j) => {
-                                        if (!rollsState.attributes[attribute]) return (
+                                    {Object.keys(rollsState.abilityTypes).map((ability, j) => {
+                                        if (!rollsState.abilityTypes[ability]) return (
                                         <option
                                             id={`select${i}opt${j + 1}`}
                                             key={`o${j + 1}`} 
-                                            value={JSON.stringify([attribute, abilityScore])}>
-                                                {attribute}
+                                            value={JSON.stringify([ability, abilityScore])}>
+                                                {ability}
                                         </option>
                                         )
                                         })}

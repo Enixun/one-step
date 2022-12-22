@@ -52,6 +52,10 @@ img {
   margin-bottom: 20px;
 }
 
+option {
+  background-color: $secondary-color;
+}
+
 .description {
 }
 
@@ -63,12 +67,13 @@ img {
   box-shadow: 
     0 5px 15px rgba(0, 0, 0, 0.1), 
     0 6px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 0.2em;
+  margin: 0.1em 0.2em;
   padding: 14px 40px;
   font-size: 16px;
   cursor: pointer;
 
   &:hover {
+    color: white;
     box-shadow: 
     0 0 6px rgba(255, 255, 255, 0.92), 
     0 0 15px rgba(255, 71, 38, 0.65);

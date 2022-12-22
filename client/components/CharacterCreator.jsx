@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import RaceMenu from "./RaceMenu.jsx";
+import AttributeMenu from "./AttributeMenu.jsx";
 import NameMenu from "./NameMenu.jsx";
 import AbilityScores from "./AbilityScores.jsx";
 
@@ -15,11 +15,23 @@ import { rollSet } from "../rollFunctions";
 //   }
 // }
 
-const saveCharacter = ({ name }) => {
-  console.log('This will need to be mongoose and send to the server');
+const saveCharacter = (player) => {
+  // console.log('This will need to be mongoose and send to the server');
+  fetch('/db/players', {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(player)
+  })
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
 }
 
 const defaultCharacter = {
+  name: 'John Doe',
+  age: 30,
+  class: 'Fighter',
+  race: 'Human',
   abilityScores: {
     Strength: 0,
     Dexterity: 0,
@@ -28,17 +40,13 @@ const defaultCharacter = {
     Wisdom: 0,
     Charisma: 0,
   },
-  age: 30,
-  class: 'Fighter',
-  name: 'John Doe',
-  race: 'Human',
 };
 
 const CharacterCreator = () => {
   const [characterState, setCharacterState] = useState(defaultCharacter);
   const [rollsState, setRollsState] = useState({
     rolls: rollSet(),
-    attributes: {
+    abilityTypes: {
       Strength: false,
       Dexterity: false,
       Constitution: false,
@@ -57,13 +65,18 @@ const CharacterCreator = () => {
           updateRollsState={setRollsState}
           state={{...characterState}}
           updateAbilityScores={setCharacterState} />
-        <RaceMenu 
-          characterRace={characterState.race}
-          updateCharacterRace={(newRace) => setCharacterState({...characterState, race: newRace})} />
+        <AttributeMenu 
+          menuType='races'
+          characterAttribute={characterState.race}
+          updateCharacterAttribute={(newRace) => setCharacterState({...characterState, race: newRace})} />
+        <AttributeMenu 
+          menuType='classes'
+          characterAttribute={characterState.class}
+          updateCharacterAttribute={(newClass) => setCharacterState({...characterState, class: newClass})} />
         <NameMenu state={characterState} onChange={setCharacterState} />
       </div>
       <div className="container">
-        <button id="save" className="btn" onClick={(e) => saveCharacter(characterState)}>Save</button>
+        <button id="save" className="btn" onClick={(e) => saveCharacter({...characterState})}>Save</button>
       </div>
     </>
   );
