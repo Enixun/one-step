@@ -14,7 +14,9 @@ const root = createRoot(domNode);
 
 // render(<App />, domNode);
 root.render(
+  <React.StrictMode>
     <BrowserRouter>
-        <App />
+      <App />
     </BrowserRouter>
+  </React.StrictMode>
 );

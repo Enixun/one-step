@@ -1,13 +1,23 @@
 const express = require('express');
 const racesController = require('../controllers/racesController');
 const classesController = require('../controllers/classesController');
-const playersController = require('../controllers/playersController');
+const playerCharacterssController = require('../controllers/playerCharactersController');
 
 const router = express.Router();
 
-router.put('/players',
-  playersController.putPlayer,
-  (req, res) => res.status(201).json(res.locals.player)
+router.put('/player_characters',
+  playerCharacterssController.putPlayerCharacter,
+  (req, res) => res.status(201).json(res.locals.playerCharacter)
+);
+
+router.get('/player_characters',
+  playerCharacterssController.getPlayerCharacters,
+  (req, res) => res.status(200).json(res.locals.playerCharacters)
+);
+
+router.delete('/player_characters',
+  playerCharacterssController.deletePlayerCharacter,
+  (req, res) => res.status(200).json(res.locals.deleted)
 );
 
 router.get('/races',

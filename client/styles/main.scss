@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&display=swap');
 
+@mixin heading-preset {
+  font-family: 'Bilbo Swash Caps', sans-serif;
+}
+
 $primary-color: #b2d3a8;
 $secondary-color: #ECD3A8;
 $tertiary-color: #ad5d4e;
+$primary-text-color: #210203;
 $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
 
 * {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14pt;
+  color: $primary-text-color;
   box-sizing: border-box;
 }
 
@@ -27,8 +34,29 @@ table {
 }
 
 h1 {
+  @include heading-preset();
   font-size: 48pt;
-  font-family: 'Bilbo Swash Caps', sans-serif;
+}
+
+h2 {
+  @include heading-preset();
+  font-size: 24pt;
+}
+
+.delete {
+  background-color: #351813;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $secondary-color;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  
+  &:hover{
+    
+    background-color: $tertiary-color;
+  }
 }
 
 .container {
@@ -56,12 +84,16 @@ option {
   background-color: $secondary-color;
 }
 
-.description {
+ul, .description {
+  text-align: left;
+  list-style-type: none;
+  padding: 0;
 }
 
 .btn {
   background-color: $tertiary-color;
   color: $secondary-color;
+  text-decoration: none;
   border: 0;
   border-radius: 10px;
   box-shadow: 
