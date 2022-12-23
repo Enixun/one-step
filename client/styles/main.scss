@@ -17,16 +17,20 @@ $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
 
+small {
+  font-size: 8pt;
+}
+
 body {
   background-color: $primary-color;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //   height: 100vh;
-  //   overflow: hidden;
-  //   margin: 0;
-  //   padding: 20px;
+    // height: 100vh;
+    // overflow: hidden;
+    margin: 0;
+    padding: 20px;
 }
 
 table {
@@ -54,8 +58,7 @@ h2 {
   height: 2em;
   
   &:hover{
-    
-    background-color: $tertiary-color;
+    background-color: #ed725c;
   }
 }
 
@@ -66,7 +69,7 @@ h2 {
   padding: 50px 20px;
   text-align: center;
   max-width: 100%;
-  width: 800px;
+  width: 1000px;
 }
 
 h3 {

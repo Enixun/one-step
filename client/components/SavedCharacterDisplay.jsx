@@ -10,10 +10,10 @@ const SavedCharacterDisplay = () => {
 			.then(response => response.json())
 			.then(characterList => {
 				// const active = attributeList.find((attribute) => attribute.name === characterAttribute)
-				if (JSON.stringify(savedCharacters) !== JSON.stringify(characterList)) setSavedCharacters(characterList);
+				setSavedCharacters(characterList);
 			})
 			.catch(err => console.log(err));
-		}, [savedCharacters]); //limits call
+		}, [savedCharacters.length]); //limits call
 
 	return (
 		<div className="container">

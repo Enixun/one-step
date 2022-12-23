@@ -64,10 +64,11 @@ function CharacterEditor({ inputCharacter, submitted, setSubmitted }) {
   return (
     <>
       <div className="container">
-        <p>
+        {/* <p>
           Your Character:
           {JSON.stringify(characterState)}
-        </p>
+        </p> */}
+        <NameMenu state={characterState} onChange={setCharacterState} />
         <AbilityScores
           rollsState={{ ...rollsState }}
           updateRollsState={setRollsState}
@@ -84,9 +85,6 @@ function CharacterEditor({ inputCharacter, submitted, setSubmitted }) {
           characterAttribute={characterState.class}
           updateCharacterAttribute={(newClass) => setCharacterState({ ...characterState, class: newClass })}
         />
-        <NameMenu state={characterState} onChange={setCharacterState} />
-      </div>
-      <div className="container">
         <Link
           id="save"
           className="btn"
